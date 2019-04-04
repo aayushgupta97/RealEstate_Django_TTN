@@ -4,12 +4,12 @@ from datetime import datetime
 # Create your models here.
 
 class Property(models.Model):
-    title = models.CharField(max_length = 200)
+    title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    address = models.CharField(max_length = 200)
-    city = models.CharField(max_length = 100)
-    state = models.CharField(max_length = 100)
-    zip_code = models.CharField(max_length = 10)
+    address = models.CharField(max_length=200)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=10)
     price = models.IntegerField()
     bedrooms = models.IntegerField()
     bathrooms = models.IntegerField()
