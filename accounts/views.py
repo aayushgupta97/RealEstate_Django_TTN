@@ -15,6 +15,11 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
+        photo = request.POST['photo']
+        description = request.POST['description']
+        phone = request.POST['phone']
+        is_seller = request.POST['is_seller']
+
 
         # Check if passwords match
         if password == password2:
@@ -29,7 +34,8 @@ def register(request):
                 else:
                     # looks good
                     user = Users.objects.create_user(username=username, password=password, email=email,
-                                                    first_name=first_name, last_name=last_name)
+                                                     first_name=first_name, last_name=last_name, photo=photo,
+                                                     phone=phone, description=description, is_seller=is_seller)
                     # Login after register
                     # auth.login(request, user)
                     # messages.success(request, 'you are now logged in ')
@@ -47,5 +53,31 @@ def register(request):
     else:
         return render(request, 'accounts/register.html')
 
+
 def login(request):
-    return render(request, 'base.html')
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, 'You are now logged in!')
+            return redirect('dashboard')
+
+        else:
+            messages.error(request, 'Invalid credentials')
+            return redirect('login')
+    else:
+        return render(request, 'accounts/login.html')
+
+
+def logout(request):
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.success(request, 'you are now logged out')
+        return redirect('index')
+
+
+def dashboard(request):
+    return render(request, 'accounts/dashboard.html')

@@ -38,7 +38,32 @@
                   <label for="password">Confirm Password</label>
                   <input type="password" name="password2" class="form-control" required>
                 </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" name="phone" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea name="description" rows="3" cols="53">Enter a Small description about yourself (optional)</textarea>
+                </div>
+
+                <div class="form-group">
+{#                    <label for="is_seller">Seller status</label>#}
+                    <input type="checkbox" name="is_seller" value="True">I am a Seller!<br>
+                    <input type="checkbox" name="is_seller" value="False">I am a Buyer!<br>
+
+
+                </div>
+                <div class="form-group">
+                  <label for="photo">Upload photo</label>
+                    <input type="file" name="photo" class="form-control">
+
+                </div>
+
                 <input type="submit" value="Register" class="btn btn-secondary btn-block">
+
               </form>
             </div>
           </div>
