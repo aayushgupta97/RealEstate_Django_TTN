@@ -80,4 +80,13 @@ def logout(request):
 
 
 def dashboard(request):
+    # if request.user in Users.objects.filter(is_seller=True):
+    #     return render(request, 'accounts/seller_dashboard.html')
+    # else:
+    # sellers = Users.objects.filter(is_seller=True)
+    # session_user = request.user
+    # context = {
+    #     'User': session_user,
+    #     'sellers': sellers
+    # }
     return render(request, 'accounts/dashboard.html')
