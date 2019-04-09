@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from .models import Property
@@ -20,7 +20,11 @@ def index(request):
 
 
 def property_single_listing(request, property_id):
-    return render(request, 'properties/property.html')
+    listing = get_object_or_404(Property, pk=property_id)
+    context = {
+        'listing': listing
+    }
+    return render(request, 'properties/property.html', context)
 
 
 def search(request):
