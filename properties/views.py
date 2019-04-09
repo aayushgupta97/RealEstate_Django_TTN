@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from .models import Property
 
@@ -6,9 +7,14 @@ from .models import Property
 
 
 def index(request):
-    listings = Property.objects.all()
+    listings = Property.objects.order_by('-list_date').filter(is_published=True)
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+
+
     context = {
-        'listings': listings,
+        'listings': paged_listings,
     }
     return render(request, 'properties/properties.html', context)
 
