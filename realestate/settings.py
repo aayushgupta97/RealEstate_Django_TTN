@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 'sellers.apps.SellersConfig',
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
