@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 'sellers.apps.SellersConfig',
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
+    'contacts.apps.ContactsConfig',
     'django.contrib.humanize'
 ]
 
