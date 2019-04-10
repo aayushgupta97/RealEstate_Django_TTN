@@ -8,4 +8,3 @@ def convert(value):
     return value/10000000
 
 
-# register.filter('convert', convert)

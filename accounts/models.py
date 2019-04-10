@@ -13,7 +13,7 @@ from django.db import models
 
 class Users(AbstractUser):
     description = models.TextField(blank=True)
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', default="default.jpg")
     phone = models.CharField(max_length=20)
     is_seller = models.BooleanField(default=False)
 
