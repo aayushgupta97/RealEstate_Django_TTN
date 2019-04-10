@@ -15,7 +15,7 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
-        photo = request.POST['photo']
+        photo = request.FILES.get('photo', '/default.jpg')
         description = request.POST['description']
         phone = request.POST['phone']
         is_seller = request.POST['is_seller']
@@ -89,4 +89,6 @@ def dashboard(request):
     #     'User': session_user,
     #     'sellers': sellers
     # }
+    # if not request.user.photo:
+    #     request.user.photo = '/default.jpg'
     return render(request, 'accounts/dashboard.html')
