@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Contact
+from django.core.mail import send_mail
+
 
 def contact(request):
     if request.method == 'POST':
@@ -25,6 +27,15 @@ def contact(request):
                          email=email, phone=phone, message=message, user_id=user_id )
 
         contact.save()
+
+        # send mail
+        send_mail(
+            'Property Listing Enquiry',
+            'There has been an enquiry for ' + property + ' by ' + name + '. \n' + message + '. Login to see more info.',
+            'contact.realestate.information@gmail.com',
+            [seller_email],
+            fail_silently=False
+        )
 
         messages.success(request, 'Your request has been submitted, the seller will get back to you soon')
 
