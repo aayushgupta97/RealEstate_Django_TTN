@@ -3,6 +3,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from .models import Users
 from contacts.models import Contact
+from properties.models import Property
 
 
 # Create your views here.
@@ -81,8 +82,7 @@ def logout(request):
 
 
 def dashboard(request):
-    # if request.user in Users.objects.filter(is_seller=True):
-    #     return render(request, 'accounts/seller_dashboard.html')
+
     # else:
     # sellers = Users.objects.filter(is_seller=True)
     # session_user = request.user
@@ -92,9 +92,19 @@ def dashboard(request):
     # }
     # if not request.user.photo:
     #     request.user.photo = '/default.jpg'
-    user_contacts = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
-    context = {
-        'contacts': user_contacts,
+    # if request.user.is_seller:
+    if request.user in Users.objects.filter(is_seller=True):
+        seller_contacts = Contact.objects.order_by('-contact_date').filter(seller_id=request.user.id)
 
-    }
+        context = {
+            'contacts': seller_contacts
+        }
+    else:
+
+        user_contacts = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
+
+        context = {
+            'contacts': user_contacts,
+
+        }
     return render(request, 'accounts/dashboard.html', context)

@@ -36,20 +36,33 @@
         <div class="col-md-12">
           <h2>Welcome {{ user.first_name }}</h2>
             {% if contacts %}
-              <p>Here are the property listings that you have inquired about</p>
+                {% if user.is_seller %}
+                    <p>Here are your Properties that have been enquired about.</p>
+                {% else %}
+                    <p>Here are the property listings that you have enquired about</p>
+                {% endif %}
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Property</th>
+                    <th scope="col">Enquiry Date</th>
+
+                    {% if user.is_seller %}
+                        <th scope="col">Message</th>
+                        <th scope="col">Buyer Details</th>
+                    {% endif %}
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
                 {% for contact in contacts %}
                   <tr>
-                    <td>{{ contact.id }}</td>
                     <td>{{ contact.property }}</td>
+                    <td>{{ contact.contact_date }}</td>
+                    {% if user.is_seller %}
+                        <td>{{ contact.message }}</td>
+                        <td>{{ contact.name }}<br>{{ contact.email }} <br>{{ contact.phone }}</td>
+                    {% endif %}
                     <td>
                       <a class="btn btn-light" href="{% url 'property' contact.property_id %}">View Listing</a>
                     </td>

@@ -142,6 +142,7 @@
           <div class="row mb-5">
             <div class="col-md-12">
               {{ listing.description }}
+
             </div>
           </div>
         </div>
@@ -162,7 +163,6 @@
       </div>
     </div>
   </section>
-
   <!-- Inquiry Modal -->
   <div class="modal fade" id="inquiryModal" role="dialog">
     <div class="modal-dialog">
@@ -176,8 +176,9 @@
         <div class="modal-body">
           <form action="{% url 'contact' %}" method="POST">
               {% csrf_token %}
-                  <input type="hidden" name="user_id" value="{{ user.id }}">
+              <input type="hidden" name="user_id" value="{{ user.id }}">
               <input type="hidden" name="seller_email" value="{{ listing.seller.email }}">
+              <input type="hidden" name="seller_id" value="{{ listing.seller_id }}">
               <input type="hidden" name="property_id" value="{{ listing.id }}">
             <div class="form-group">
               <label for="property_name" class="col-form-label">Property:</label>
