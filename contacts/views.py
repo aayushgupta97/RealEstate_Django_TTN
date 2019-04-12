@@ -13,6 +13,14 @@ def contact(request):
         user_id = request.POST['user_id']
         seller_email = request.POST['seller_email']
 
+        # Check if user has made enquiry already
+        if request.user.is_authenticated:
+            user_id = request.user.id
+            has_contacted = Contact.objects.all().filter(property_id=property_id, user_id=user_id)
+            if has_contacted:
+                messages.error(request, "You have already made an enquiry for this property listing.")
+                return redirect('/properties/' + property_id)
+
         contact = Contact(property=property, property_id=property_id, name=name,
                          email=email, phone=phone, message=message, user_id=user_id )
 
