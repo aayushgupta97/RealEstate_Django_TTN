@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
+from django.contrib import messages
 from .models import Property
 from .choices import state_choices, price_choices, bedroom_choices
 # Create your views here.
@@ -69,3 +70,48 @@ def search(request):
     }
 
     return render(request, 'properties/search.html', context)
+
+def add_property(request):
+    context = {
+        'state_choices': state_choices,
+    }
+
+
+    if request.method == "POST":
+        seller = request.POST['seller_id']
+        title = request.POST['title']
+        address = request.POST['address']
+        city = request.POST['city']
+        state = request.POST['state']
+        zip_code = request.POST['zip_code']
+        description = request.POST['description']
+        price = request.POST['price']
+        bedrooms = request.POST['bedrooms']
+        bathrooms = request.POST['bathrooms']
+        garage = request.POST['garage']
+        square_ft = request.POST['square_ft']
+        lot_size = request.POST['lot_size']
+        photo_main = request.FILES['photo_main']
+        photo_1 = request.FILES.get('photo_1', '')
+        photo_2 = request.FILES.get('photo_2', '')
+        photo_3 = request.FILES.get('photo_3', '')
+        photo_4 = request.FILES.get('photo_4', '')
+        photo_5 = request.FILES.get('photo_5', '')
+        photo_6 = request.FILES.get('photo_6', '')
+        # photo_2 = request.FILES.get['photo_2']
+        # photo_3 = request.FILES.get['photo_3']
+        # photo_4 = request.FILES.get['photo_4']
+        # photo_5 = request.FILES.get['photo_5']
+        # photo_6 = request.FILES.get['photo_6']
+        new_property = Property(seller_id=seller, title=title, address=address, city=city, state=state,
+                                zip_code=zip_code, description=description, price=price,
+                                bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
+                                square_ft=square_ft, lot_size=lot_size, photo_main=photo_main,
+                                photo_1=photo_1, photo_2=photo_2, photo_3=photo_3, photo_4=photo_4,
+                                photo_5=photo_5, photo_6=photo_6)
+        new_property.save()
+        messages.success(request, 'Your new property has been posted successfully')
+        return redirect('index')
+
+    else:
+        return render(request, 'properties/add_property.html', context)

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
+from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from .models import Users
 from contacts.models import Contact
@@ -93,11 +94,18 @@ def dashboard(request):
     # if not request.user.photo:
     #     request.user.photo = '/default.jpg'
     # if request.user.is_seller:
+
+
     if request.user in Users.objects.filter(is_seller=True):
         seller_contacts = Contact.objects.order_by('-contact_date').filter(seller_id=request.user.id)
+        listings = Property.objects.order_by('-list_date').filter(seller=request.user.id)
+        paginator = Paginator(listings, 3)
+        page = request.GET.get('page')
+        paged_listings = paginator.get_page(page)
 
         context = {
-            'contacts': seller_contacts
+            'contacts': seller_contacts,
+            'listings':paged_listings
         }
     else:
 
@@ -108,3 +116,4 @@ def dashboard(request):
 
         }
     return render(request, 'accounts/dashboard.html', context)
+
