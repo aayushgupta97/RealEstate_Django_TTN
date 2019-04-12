@@ -71,11 +71,11 @@ def search(request):
 
     return render(request, 'properties/search.html', context)
 
+
 def add_property(request):
     context = {
         'state_choices': state_choices,
     }
-
 
     if request.method == "POST":
         seller = request.POST['seller_id']
@@ -98,11 +98,6 @@ def add_property(request):
         photo_4 = request.FILES.get('photo_4', '')
         photo_5 = request.FILES.get('photo_5', '')
         photo_6 = request.FILES.get('photo_6', '')
-        # photo_2 = request.FILES.get['photo_2']
-        # photo_3 = request.FILES.get['photo_3']
-        # photo_4 = request.FILES.get['photo_4']
-        # photo_5 = request.FILES.get['photo_5']
-        # photo_6 = request.FILES.get['photo_6']
         new_property = Property(seller_id=seller, title=title, address=address, city=city, state=state,
                                 zip_code=zip_code, description=description, price=price,
                                 bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
@@ -115,3 +110,25 @@ def add_property(request):
 
     else:
         return render(request, 'properties/add_property.html', context)
+
+
+def delete_property(request, property_id):
+    property_listing = get_object_or_404(Property, id=property_id)
+    seller = property_listing.seller.username
+    context = {
+        'listing': property_listing
+    }
+    if request.method == 'POST':
+        if request.user.is_authenticated and request.user.username == seller:
+            # request.method == 'POST' and
+            property_listing.delete()
+            messages.success(request, "Post Successfully Deleted!")
+            return redirect('dashboard')
+        else:
+            messages.error(request, "Cannot delete this property")
+            return redirect('dashboard')
+    else:
+        return render(request, 'properties/delete_property.html', context)
+def update_property(request):
+    pass
+

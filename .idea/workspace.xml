@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ed1990f-3d38-4eab-a8b8-e9e7cf557d74" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/properties/templates/properties/add_property.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/properties/templates/properties/delete_property.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/properties/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/properties/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/properties/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/properties/views.py" afterDir="false" />
     </list>
@@ -47,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/properties/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="23" selection-start-line="10" selection-start-column="4" selection-end-line="14" />
+            <state relative-caret-position="523">
+              <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -56,11 +55,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/urls.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/properties/templates/properties/delete_property.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="472">
+              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="935">
+              <caret line="58" column="21" selection-start-line="58" selection-start-column="16" selection-end-line="62" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/properties/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -90,39 +107,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="58" column="21" selection-start-line="58" selection-start-column="16" selection-end-line="62" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/properties/templates/properties/property.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1601">
-              <caret line="201" column="18" selection-start-line="201" selection-start-column="18" selection-end-line="201" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/properties/templates/properties/add_property.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="-17">
               <caret line="17" column="71" selection-start-line="17" selection-start-column="71" selection-end-line="17" selection-end-column="71" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="574">
+              <caret line="151" column="17" lean-forward="true" selection-start-line="104" selection-start-column="12" selection-end-line="152" selection-end-column="16" />
               <folding>
                 <element signature="e#322#349#0#HTML" expanded="true" />
+                <element signature="e#5231#5237#0#HTML" expanded="true" />
+                <element signature="e#5237#5243#0#HTML" expanded="true" />
+                <element signature="e#5243#5249#0#HTML" expanded="true" />
+                <element signature="e#5249#5255#0#HTML" expanded="true" />
+                <element signature="e#5255#5261#0#HTML" expanded="true" />
+                <element signature="e#5261#5267#0#HTML" expanded="true" />
+                <element signature="e#5267#5273#0#HTML" expanded="true" />
+                <element signature="e#5273#5279#0#HTML" expanded="true" />
+                <element signature="e#5279#5285#0#HTML" expanded="true" />
+                <element signature="e#5285#5291#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -177,12 +186,13 @@
         <option value="$PROJECT_DIR$/contacts/models.py" />
         <option value="$PROJECT_DIR$/contacts/views.py" />
         <option value="$PROJECT_DIR$/properties/templates/properties/property.html" />
-        <option value="$PROJECT_DIR$/properties/urls.py" />
         <option value="$PROJECT_DIR$/properties/templates/properties/add_property.html" />
-        <option value="$PROJECT_DIR$/properties/views.py" />
         <option value="$PROJECT_DIR$/properties/models.py" />
         <option value="$PROJECT_DIR$/accounts/views.py" />
+        <option value="$PROJECT_DIR$/properties/urls.py" />
+        <option value="$PROJECT_DIR$/properties/views.py" />
         <option value="$PROJECT_DIR$/accounts/templates/accounts/dashboard.html" />
+        <option value="$PROJECT_DIR$/properties/templates/properties/delete_property.html" />
       </list>
     </option>
   </component>
@@ -362,12 +372,12 @@
       <updated>1554281429933</updated>
       <workItem from="1554281433407" duration="818000" />
       <workItem from="1554355691167" duration="13980000" />
-      <workItem from="1554553353000" duration="72519000" />
+      <workItem from="1554553353000" duration="76609000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87317000" />
+    <option name="totallyTimeSpent" value="91407000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -722,16 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/properties/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/accounts/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -753,20 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="31" column="48" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="36" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="58" column="21" selection-start-line="58" selection-start-column="16" selection-end-line="62" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/properties/templates/properties/add_property.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" column="71" selection-start-line="17" selection-start-column="71" selection-end-line="17" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -797,16 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/properties/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="23" selection-start-line="10" selection-start-column="4" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1343">
@@ -824,13 +800,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/properties/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="58" column="21" selection-start-line="58" selection-start-column="16" selection-end-line="62" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/properties/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/properties/templates/properties/add_property.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="17" column="71" selection-start-line="17" selection-start-column="71" selection-end-line="17" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="574">
+          <caret line="151" column="17" lean-forward="true" selection-start-line="104" selection-start-column="12" selection-end-line="152" selection-end-column="16" />
           <folding>
             <element signature="e#322#349#0#HTML" expanded="true" />
+            <element signature="e#5231#5237#0#HTML" expanded="true" />
+            <element signature="e#5237#5243#0#HTML" expanded="true" />
+            <element signature="e#5243#5249#0#HTML" expanded="true" />
+            <element signature="e#5249#5255#0#HTML" expanded="true" />
+            <element signature="e#5255#5261#0#HTML" expanded="true" />
+            <element signature="e#5261#5267#0#HTML" expanded="true" />
+            <element signature="e#5267#5273#0#HTML" expanded="true" />
+            <element signature="e#5273#5279#0#HTML" expanded="true" />
+            <element signature="e#5279#5285#0#HTML" expanded="true" />
+            <element signature="e#5285#5291#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/properties/templates/properties/delete_property.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
         </state>
       </provider>
     </entry>
