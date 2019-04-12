@@ -6,3 +6,4 @@ urlpatterns = [
     path('<int:property_id>', views.property_single_listing, name="property"),
     path('search/', views.search, name="search"),
 ]
+
