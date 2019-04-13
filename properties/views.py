@@ -140,7 +140,7 @@ def update_property(request, property_id):
     }
     if request.method == 'POST':
         if request.user.is_authenticated and request.user.username == seller:
-            seller_id = property_listing.seller.id
+            # seller_id = property_listing.seller.id
             title = request.POST['title']
             address = request.POST['address']
             city = request.POST['city']
@@ -160,15 +160,16 @@ def update_property(request, property_id):
             photo_4 = request.FILES.get('photo_4', property_listing.photo_4)
             photo_5 = request.FILES.get('photo_5', property_listing.photo_5)
             photo_6 = request.FILES.get('photo_6', property_listing.photo_6)
-            property_listing = Property(seller_id=seller_id, title=title, address=address, city=city, state=state,
-                                        zip_code=zip_code, description=description, price=price,
-                                        bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
-                                        square_ft=square_ft, lot_size=lot_size, id=property_id, photo_main = photo_main,
-                                        photo_1 = photo_1, photo_2 = photo_2, photo_3 = photo_3, photo_4 = photo_4,
-                                        photo_5 = photo_5, photo_6 = photo_6)
+            Property.objects.filter(id=property_id).update(title=title, address=address, city=city, state=state,
+                                                           zip_code=zip_code, description=description, price=price,
+                                                           bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
+                                                           square_ft=square_ft, lot_size=lot_size, id=property_id,
+                                                           photo_main = photo_main, photo_1=photo_1,
+                                                           photo_2 = photo_2, photo_3 = photo_3, photo_4 = photo_4,
+                                                           photo_5 = photo_5, photo_6 = photo_6)
 
 
-            property_listing.save()
+            # property_listing.save()x
             messages.success(request, 'Your property has been updated successfully')
             return redirect('dashboard')
 

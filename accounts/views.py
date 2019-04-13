@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages, auth
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
@@ -120,4 +120,43 @@ def dashboard(request):
 
         }
     return render(request, 'accounts/dashboard.html', context)
+
+def update_user(request, user_id):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            # user_account = get_object_or_404(Users, id = user_id)
+            # first_name = request.POST['first_name']
+            # last_name = request.POST['last_name']
+            # username = request.POST['username']
+            # email = request.POST['email']
+            # # password = request.POST['password']
+            # # password2 = request.POST['password2']
+            # photo = request.FILES.get('photo', '/default.jpg')
+            # description = request.POST['description']
+            # phone = request.POST['phone']
+            # # is_seller = request.POST['is_seller']
+
+
+            # user_account = Users(first_name=first_name, last_name=last_name, username=username, email=email,
+            #                      photo=photo, description=description, phone=phone, is_seller=is_seller)
+            # user_account.save()
+
+            Users.objects.filter(id=user_id).update(first_name = request.POST['first_name'],
+                                                    last_name = request.POST['last_name'],
+                                                    username=request.POST['username'],
+                                                    photo=request.FILES.get('photo', '/default.jpg'),
+                                                    description=request.POST['description'],
+                                                    phone=request.POST['phone']
+                                                    )
+            messages.success(request, "Successfully updated your profile")
+            return redirect('dashboard')
+        else:
+            return render(request, 'accounts/update_user_details.html')
+
+    else:
+        messages.error(request, "you are not authenticated to visit ths page.")
+        return redirect('index')
+
+
+
 

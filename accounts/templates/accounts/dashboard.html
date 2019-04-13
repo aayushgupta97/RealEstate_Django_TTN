@@ -45,11 +45,9 @@
       <div class="row">
         <div class="col-md-12">
 
-          <h2>Welcome {{ user.first_name }}
-          {% if user.is_seller %}
-
-             <a class="btn btn-primary" href="{% url 'add_property' %}" style="margin-left: 730px">Add a Property</a>
-          {% endif %}</h2>
+            <h2>Welcome {{ user.first_name }}
+              <a class="btn btn-primary" href="{% url 'update_user_details' user.id %}" style="margin-left: 755px">Edit Profile</a>
+            </h2>
 
             {% if contacts %}
                 {% if user.is_seller %}
@@ -97,7 +95,9 @@
 
     {% if user.is_seller %}
 
-    <h2 class="container">Here are your posted properties</h2>
+    <h2 class="container">Here are your posted properties
+     <a class="btn btn-primary" href="{% url 'add_property' %}" style="margin-left: 500px">Add a Property</a>
+    </h2>
     <section id="listings" class="py-4">
     <div class="container">
       <div class="row">

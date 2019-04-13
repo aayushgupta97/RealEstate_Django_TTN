@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="update_user_details" class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <h4>
+                <i class="fas fa-user-plus"></i> Edit Profile </h4>
+            </div>
+            <div class="card-body">
+                {% include 'messages/alerts.html' %}
+                <form action="{% url 'update_user_details' user.id %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+{#                    <input type="hidden" name="password" value="{{ user.password }}">#}
+{#                    <input type="hidden" name="password2" value="{{ user.password2 }}">#}
+                    <input type="hidden" name="is_seller" value="{{ user.is_seller }}">
+                  <div class="form-group">
+                  <label for="first_name">First Name</label>
+                  <input type="text" name="first_name" class="form-control" value="{{ user.first_name }}" required>
+                </div>
+                <div class="form-group">
+                  <label for="last_name">Last Name</label>
+                  <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}" required>
+                </div>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" class="form-control" value="{{ user.username }}" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" class="form-control" value="{{ user.email }}" required>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" name="phone" class="form-control" value="{{ user.phone }}" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea name="description" rows="3" cols="53">{{ user.description }}</textarea>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="photo">Upload photo</label>
+                    <input type="file" name="photo" class="form-control">
+                    <hr>
+                    <img src="{{ user.photo.url }}" class="col-md-12">
+                    <hr>
+                </div>
+
+
+
+
+                <input type="submit" value="Update" class="btn btn-secondary btn-block">
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
