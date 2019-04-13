@@ -142,7 +142,7 @@
               <hr>
               <a href="{% url 'property' listing.id %}" class="btn btn-primary btn-block">More Info</a>
                 <hr>
-              <a class="btn btn-success" href="{% url 'add_property' %}">Update</a>
+              <a class="btn btn-success" href="{% url 'update_property' listing.id %}">Update</a>
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
 {#                <form method="POST">#}
 {#                    {% csrf_token %}#}

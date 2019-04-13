@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="add_property" class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <h4>
+                <i class="fas fa-user-plus"></i> Add a New Property</h4>
+            </div>
+            <div class="card-body">
+                {% include 'messages/alerts.html' %}
+                <form action="{% url 'update_property' listing.id %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+
+                    <input type="hidden" name="seller_id" value="{{ request.user.id }}">
+                    <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" class="form-control" value="{{ listing.title }}" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" class="form-control" value="{{ listing.address }}" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" name="city" class="form-control" value="{{ listing.city }}"required>
+                    </div>
+                    <label for="state">State</label>
+                    <select name="state" class="form-control">
+{#                    <option selected="true" disabled="disabled">State (All)</option>#}
+{#                    <option selected="true" disabled="disabled">{{  }} </option>#}
+                        {% for key, value in state_choices.items %}
+                            {% if key == listing.state %}
+                                <option selected="true" value="{{ key }}">{{ value }}</option>
+                            {% else %}
+                                <option value="{{ key }}">{{ value }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
+                    <div class="form-group">
+                    <label for="zip_code">Zip Code</label>
+                    <input type="text" name="zip_code" class="form-control" value="{{ listing.zip_code }}" required>
+                    </div>
+
+                    <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea name="description" rows="3" cols="54" value="{{ listing.description }}">Enter a description about property</textarea>
+                   </div>
+
+                    <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" name="price" class="form-control" value="{{ listing.price }}" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="bedrooms">Bedrooms</label>
+                    <input type="number" name="bedrooms" class="form-control" value="{{ listing.bedrooms }}" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="bathrooms">Bathrooms</label>
+                    <input type="number" name="bathrooms" class="form-control" value="{{ listing.bathrooms }}" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="garage">Garage</label>
+                    <input type="number" name="garage" class="form-control" value="{{ listing.garage }}" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="square_ft">Square Feet</label>
+                    <input type="number" name="square_ft" class="form-control" value="{{ listing.square_ft }}" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="lot_size">Lot Size</label>
+                    <input type="number" name="lot_size" class="form-control" step="0.01" value="{{ listing.lot_size }}" required>
+                    </div>
+
+                    <div class="form-group">
+                  <label for="photo_main">Upload Main photo</label>
+                    <input type="file" name="photo_main" class="form-control">
+                        <img src="{{ listing.photo_main.url }}" class="col-md-12">
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                  <label for="photo_1">Upload photo 1</label>
+                    <input type="file" name="photo_1" class="form-control">
+                        {% if listing.photo_1 %}
+                        <img src="{{ listing.photo_1.url }}" class="col-md-12">
+                        {% endif %}
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                  <label for="photo_2">Upload photo 2</label>
+                    <input type="file" name="photo_2" class="form-control">
+                        {% if listing.photo_2 %}
+                        <img src="{{ listing.photo_2.url }}" class="col-md-12">
+                        {% endif %}
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                  <label for="photo_3">Upload photo 3</label>
+                    <input type="file" name="photo_3" class="form-control">
+                        {% if listing.photo_3 %}
+                        <img src="{{ listing.photo_3.url }}" class="col-md-12">
+                        {% endif %}
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                  <label for="photo_4">Upload photo 4</label>
+                    <input type="file" name="photo_4" class="form-control">
+                        {% if listing.photo_4 %}
+                        <img src="{{ listing.photo_4.url }}" class="col-md-12">
+                        {% endif %}
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                  <label for="photo_5">Upload photo 5</label>
+                    <input type="file" name="photo_5" class="form-control">
+                     {% if listing.photo_5 %}
+                        <img src="{{ listing.photo_5.url }}" class="col-md-12">
+                        {% endif %}
+                        <hr>
+
+                    </div>
+                    <div class="form-group">
+                  <label for="photo_6">Upload photo 6</label>
+                    <input type="file" name="photo_6" class="form-control">
+                        {% if listing.photo_6 %}
+                        <img src="{{ listing.photo_6.url }}" class="col-md-12">
+                        {% endif %}
+                        <hr>
+                    </div>
+
+                    <input type="submit" value="Update Property" class="btn btn-secondary btn-block">
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

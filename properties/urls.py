@@ -7,7 +7,7 @@ urlpatterns = [
     path('search/', views.search, name="search"),
     path('add/', views.add_property, name="add_property"),
     path('delete/<int:property_id>', views.delete_property, name="delete_property"),
-    # path('add/', views.add_property, name="add_property"),
+    path('update/<int:property_id>', views.update_property, name="update_property"),
 
 ]
 

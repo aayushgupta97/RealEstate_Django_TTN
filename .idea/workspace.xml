@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ed1990f-3d38-4eab-a8b8-e9e7cf557d74" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/properties/templates/properties/delete_property.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/properties/templates/properties/update_property.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/properties/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/properties/urls.py" afterDir="false" />
@@ -35,19 +35,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/db/models/fields/related.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4188">
-              <caret line="775" column="24" selection-start-line="775" selection-start-column="24" selection-end-line="775" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/properties/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="523">
-              <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
+            <state relative-caret-position="332">
+              <caret line="161" column="75" selection-start-line="161" selection-start-column="75" selection-end-line="161" selection-end-column="75" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -55,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/properties/templates/properties/delete_property.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+            <state relative-caret-position="285">
+              <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -86,22 +77,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1343">
-              <caret line="106" column="40" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/properties/templates/properties/properties.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="39" column="30" selection-start-line="33" selection-start-column="2" selection-end-line="131" selection-end-column="12" />
+            <state relative-caret-position="961">
+              <caret line="68" column="32" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -109,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/properties/templates/properties/add_property.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="17" column="71" selection-start-line="17" selection-start-column="71" selection-end-line="17" selection-end-column="71" />
+            <state relative-caret-position="-935">
+              <caret line="17" selection-start-line="17" selection-end-line="18" />
             </state>
           </provider>
         </entry>
@@ -118,8 +97,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="151" column="17" lean-forward="true" selection-start-line="104" selection-start-column="12" selection-end-line="152" selection-end-column="16" />
+            <state relative-caret-position="153">
+              <caret line="144" column="82" selection-start-line="144" selection-start-column="82" selection-end-line="144" selection-end-column="82" />
               <folding>
                 <element signature="e#322#349#0#HTML" expanded="true" />
                 <element signature="e#5231#5237#0#HTML" expanded="true" />
@@ -133,6 +112,15 @@
                 <element signature="e#5279#5285#0#HTML" expanded="true" />
                 <element signature="e#5285#5291#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/properties/templates/properties/update_property.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="98" column="35" selection-start-line="98" selection-start-column="35" selection-end-line="98" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -189,17 +177,17 @@
         <option value="$PROJECT_DIR$/properties/templates/properties/add_property.html" />
         <option value="$PROJECT_DIR$/properties/models.py" />
         <option value="$PROJECT_DIR$/accounts/views.py" />
+        <option value="$PROJECT_DIR$/properties/templates/properties/delete_property.html" />
+        <option value="$PROJECT_DIR$/accounts/templates/accounts/dashboard.html" />
         <option value="$PROJECT_DIR$/properties/urls.py" />
         <option value="$PROJECT_DIR$/properties/views.py" />
-        <option value="$PROJECT_DIR$/accounts/templates/accounts/dashboard.html" />
-        <option value="$PROJECT_DIR$/properties/templates/properties/delete_property.html" />
+        <option value="$PROJECT_DIR$/properties/templates/properties/update_property.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1366" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="1366" />
+    <option name="height" value="736" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -372,12 +360,12 @@
       <updated>1554281429933</updated>
       <workItem from="1554281433407" duration="818000" />
       <workItem from="1554355691167" duration="13980000" />
-      <workItem from="1554553353000" duration="76609000" />
+      <workItem from="1554553353000" duration="83091000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91407000" />
+    <option name="totallyTimeSpent" value="97889000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -389,10 +377,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1366" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="0" y="0" width="1366" height="736" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49878347" visible="true" weight="0.12966916" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49878347" visible="true" weight="0.18409091" />
       <window_info id="Structure" order="1" sideWeight="0.50121653" side_tool="true" weight="0.24621212" />
       <window_info id="Favorites" order="2" sideWeight="0.50121653" side_tool="true" weight="0.24621212" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -406,7 +394,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32952693" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007576" side_tool="true" weight="0.2822186" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924242" visible="true" weight="0.15047021" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49924242" visible="true" weight="0.23491028" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32952693" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -742,13 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/properties/templates/properties/property.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1601">
-          <caret line="201" column="18" selection-start-line="201" selection-start-column="18" selection-end-line="201" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/templates/pages/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -785,27 +766,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
+        <state relative-caret-position="910">
           <caret line="106" column="40" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/properties/templates/properties/properties.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="39" column="30" selection-start-line="33" selection-start-column="2" selection-end-line="131" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/properties/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -814,6 +778,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
           <caret line="58" column="21" selection-start-line="58" selection-start-column="16" selection-end-line="62" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/properties/templates/properties/delete_property.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -827,17 +798,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/properties/templates/properties/add_property.html">
+    <entry file="file://$PROJECT_DIR$/properties/templates/properties/property.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="17" column="71" selection-start-line="17" selection-start-column="71" selection-end-line="17" selection-end-column="71" />
+        <state relative-caret-position="2703">
+          <caret line="201" column="18" selection-start-line="201" selection-start-column="18" selection-end-line="201" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/properties/templates/properties/properties.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="961">
+          <caret line="68" column="32" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="151" column="17" lean-forward="true" selection-start-line="104" selection-start-column="12" selection-end-line="152" selection-end-column="16" />
+        <state relative-caret-position="153">
+          <caret line="144" column="82" selection-start-line="144" selection-start-column="82" selection-end-line="144" selection-end-column="82" />
           <folding>
             <element signature="e#322#349#0#HTML" expanded="true" />
             <element signature="e#5231#5237#0#HTML" expanded="true" />
@@ -854,10 +832,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/properties/templates/properties/delete_property.html">
+    <entry file="file://$PROJECT_DIR$/properties/templates/properties/add_property.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+        <state relative-caret-position="-935">
+          <caret line="17" selection-start-line="17" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/properties/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="161" column="75" selection-start-line="161" selection-start-column="75" selection-end-line="161" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/properties/templates/properties/update_property.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="98" column="35" selection-start-line="98" selection-start-column="35" selection-end-line="98" selection-end-column="35" />
         </state>
       </provider>
     </entry>
