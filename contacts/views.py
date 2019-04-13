@@ -25,14 +25,15 @@ def contact(request):
                 return redirect('/properties/' + property_id)
 
         contact = Contact(property=property, property_id=property_id, name=name,
-                         email=email, phone=phone, message=message, user_id=user_id, seller_id=seller_id)
+                          email=email, phone=phone, message=message, user_id=user_id, seller_id=seller_id)
 
         contact.save()
 
         # send mail
         send_mail(
             'Property Listing Enquiry',
-            'There has been an enquiry for ' + property + ' by ' + name + '. \n' + message + '. Login to see more info.',
+            'There has been an enquiry for ' + property + ' by ' + name + '. \n\n' + 'Buyer\'s contact: ' + '\nEmail :'
+            + email + '\nPhone: ' + phone + '\nLogin to see more details.',
             'contact.realestate.information@gmail.com',
             [seller_email],
             fail_silently=False

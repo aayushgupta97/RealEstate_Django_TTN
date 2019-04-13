@@ -103,9 +103,13 @@ def dashboard(request):
         page = request.GET.get('page')
         paged_listings = paginator.get_page(page)
 
+        paginator = Paginator(seller_contacts, 10)
+        contact_page = request.GET.get('enquiry_page')
+        paged_contacts = paginator.get_page(contact_page)
+
         context = {
-            'contacts': seller_contacts,
-            'listings':paged_listings
+            'contacts': paged_contacts,
+            'listings': paged_listings
         }
     else:
 
