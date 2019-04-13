@@ -177,3 +177,17 @@ def update_property(request, property_id):
             return redirect('index')
     else:
         return render(request, 'properties/update_property.html', context)
+
+
+def publish(request, property_id):
+    property_listing = get_object_or_404(Property, id=property_id)
+    property_listing.is_published = True
+    property_listing.save()
+    return redirect('dashboard')
+
+
+def unpublish(request, property_id):
+    property_listing = get_object_or_404(Property, id=property_id)
+    property_listing.is_published = False
+    property_listing.save()
+    return redirect('dashboard')

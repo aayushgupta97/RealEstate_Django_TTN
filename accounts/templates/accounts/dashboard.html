@@ -143,7 +143,15 @@
               <a href="{% url 'property' listing.id %}" class="btn btn-primary btn-block">More Info</a>
                 <hr>
               <a class="btn btn-success" href="{% url 'update_property' listing.id %}">Update</a>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                {% if listing.is_published %}
+                    &emsp;&emsp;&nbsp;&nbsp;
+                    <a class="btn btn-dark" href="{% url 'unpublish' listing.id %}">Hide</a>
+                    &emsp;&emsp;&nbsp;
+                {% else %}
+                    &emsp;&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-info" href="{% url 'publish' listing.id %}">Publish</a>
+                    &emsp;&nbsp;&nbsp;&nbsp;
+                {% endif %}
 {#                <form method="POST">#}
 {#                    {% csrf_token %}#}
               <a class="btn btn-danger" href="{% url 'delete_property' listing.id %}">Delete</a>
