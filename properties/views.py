@@ -115,20 +115,24 @@ def add_property(request):
 def delete_property(request, property_id):
     property_listing = get_object_or_404(Property, id=property_id)
     seller = property_listing.seller.username
+
+    if request.user.is_authenticated and request.user.username == seller:
+        property_listing.delete()
+        messages.success(request, "Post Successfully Deleted!")
+        return redirect('dashboard')
+    else:
+        messages.error(request, "Cannot delete this property")
+        return redirect('dashboard')
+
+
+def delete_property_confirmation(request, property_id):
+    property_listing = get_object_or_404(Property, id=property_id)
     context = {
         'listing': property_listing
     }
-    if request.method == 'POST':
-        if request.user.is_authenticated and request.user.username == seller:
-            # request.method == 'POST' and
-            property_listing.delete()
-            messages.success(request, "Post Successfully Deleted!")
-            return redirect('dashboard')
-        else:
-            messages.error(request, "Cannot delete this property")
-            return redirect('dashboard')
-    else:
-        return render(request, 'properties/delete_property.html', context)
+    return render(request, 'properties/delete_property.html', context)
+
+
 def update_property(request, property_id):
     property_listing = get_object_or_404(Property, id=property_id)
     seller = property_listing.seller.username
@@ -140,7 +144,7 @@ def update_property(request, property_id):
     }
     if request.method == 'POST':
         if request.user.is_authenticated and request.user.username == seller:
-            # seller_id = property_listing.seller.id
+            seller_id = property_listing.seller.id
             title = request.POST['title']
             address = request.POST['address']
             city = request.POST['city']
@@ -163,12 +167,12 @@ def update_property(request, property_id):
             Property.objects.filter(id=property_id).update(title=title, address=address, city=city, state=state,
                                                            zip_code=zip_code, description=description, price=price,
                                                            bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
-                                                           square_ft=square_ft, lot_size=lot_size, id=property_id,
-                                                           photo_main = photo_main, photo_1=photo_1,
-                                                           photo_2 = photo_2, photo_3 = photo_3, photo_4 = photo_4,
-                                                           photo_5 = photo_5, photo_6 = photo_6)
+                                                           square_ft=square_ft, lot_size=lot_size)
 
-
+            # updated_listing = Property(id=property_listing.id, seller_id=seller_id, photo_main = photo_main,
+            #                            photo_1=photo_1, photo_2 = photo_2, photo_3 = photo_3, photo_4 = photo_4.url,
+            #                            photo_5=photo_5, photo_6 = photo_6)
+            # updated_listing.save()
             # property_listing.save()x
             messages.success(request, 'Your property has been updated successfully')
             return redirect('dashboard')
@@ -192,3 +196,4 @@ def unpublish(request, property_id):
     property_listing.is_published = False
     property_listing.save()
     return redirect('dashboard')
+

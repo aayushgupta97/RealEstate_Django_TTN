@@ -6,7 +6,6 @@ from .models import Users
 from contacts.models import Contact
 from properties.models import Property
 
-
 # Create your views here.
 
 def register(request):
@@ -156,7 +155,4 @@ def update_user(request, user_id):
     else:
         messages.error(request, "you are not authenticated to visit ths page.")
         return redirect('index')
-
-
-
 
