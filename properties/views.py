@@ -157,18 +157,19 @@ def update_property(request, property_id):
             garage = request.POST['garage']
             square_ft = request.POST['square_ft']
             lot_size = request.POST['lot_size']
-            photo_main = request.FILES.get('photo_main', property_listing.photo_main)
-            photo_1 = request.FILES.get('photo_1', property_listing.photo_1)
-            photo_2 = request.FILES.get('photo_2', property_listing.photo_2)
-            photo_3 = request.FILES.get('photo_3', property_listing.photo_3)
-            photo_4 = request.FILES.get('photo_4', property_listing.photo_4)
-            photo_5 = request.FILES.get('photo_5', property_listing.photo_5)
-            photo_6 = request.FILES.get('photo_6', property_listing.photo_6)
             Property.objects.filter(id=property_id).update(title=title, address=address, city=city, state=state,
                                                            zip_code=zip_code, description=description, price=price,
                                                            bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
                                                            square_ft=square_ft, lot_size=lot_size)
 
+            property_listing.photo_main = request.FILES.get('photo_main', property_listing.photo_main)
+            property_listing.photo_1 = request.FILES.get('photo_1', property_listing.photo_1)
+            property_listing.photo_2 = request.FILES.get('photo_2', property_listing.photo_2)
+            property_listing.photo_3 = request.FILES.get('photo_3', property_listing.photo_3)
+            property_listing.photo_4 = request.FILES.get('photo_4', property_listing.photo_4)
+            property_listing.photo_5 = request.FILES.get('photo_5', property_listing.photo_5)
+            property_listing.photo_6 = request.FILES.get('photo_6', property_listing.photo_6)
+            property_listing.save()
             # updated_listing = Property(id=property_listing.id, seller_id=seller_id, photo_main = photo_main,
             #                            photo_1=photo_1, photo_2 = photo_2, photo_3 = photo_3, photo_4 = photo_4.url,
             #                            photo_5=photo_5, photo_6 = photo_6)

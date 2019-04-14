@@ -143,10 +143,12 @@ def update_user(request, user_id):
             Users.objects.filter(id=user_id).update(first_name = request.POST['first_name'],
                                                     last_name = request.POST['last_name'],
                                                     username=request.POST['username'],
-                                                    photo=request.FILES.get('photo', '/default.jpg'),
                                                     description=request.POST['description'],
                                                     phone=request.POST['phone']
                                                     )
+            current_user = get_object_or_404(Users, id=request.user.id)
+            current_user.photo = photo=request.FILES.get('photo', current_user.photo)
+            current_user.save()
             messages.success(request, "Successfully updated your profile")
             return redirect('dashboard')
         else:
