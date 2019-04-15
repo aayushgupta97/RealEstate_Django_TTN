@@ -46,7 +46,7 @@
         <div class="col-md-12">
 
             <h2>Welcome {{ user.first_name }}
-              <a class="btn btn-primary" href="{% url 'update_user_details' user.id %}" style="margin-left: 755px">Edit Profile</a>
+              <a class="btn btn-primary" href="{% url 'update_user_details' user.id %}" style="float: right; margin-right: 20px">Edit Profile</a>
             </h2>
 
             {% if contacts %}
@@ -78,7 +78,7 @@
                         <td>{{ contact.name }}<br>{{ contact.email }} <br>{{ contact.phone }}</td>
                     {% endif %}
                     <td>
-                      <a class="btn btn-light" href="{% url 'property' contact.property_id %}">View Listing</a>
+                      <a class="btn btn-light" href="{% url 'property' contact.property_id %}" >View Listing</a>
                     </td>
                   </tr>
                 {% endfor %}
@@ -96,7 +96,7 @@
     {% if user.is_seller %}
 
     <h2 class="container">Here are your posted properties
-     <a class="btn btn-primary" href="{% url 'add_property' %}" style="margin-left: 500px">Add a Property</a>
+     <a class="btn btn-primary" href="{% url 'add_property' %}" style="float: right; margin-right: 20px">Add a Property</a>
     </h2>
     <section id="listings" class="py-4">
     <div class="container">

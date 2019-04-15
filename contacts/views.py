@@ -5,6 +5,14 @@ from django.core.mail import send_mail
 
 
 def contact(request):
+    """
+    Takes the input form enquiry form where the buyer can make an enquiry on a property.
+    The seller gets this enquiry on his dashboard and an email is sent to the seller with the
+    enquiry details.
+    Duplicate enquiry is not allowed for authenticated users.
+    :param request:
+    :return: HttpResponse renders the listing page with success message if enquiry is made, otherwise with error message
+    """
     if request.method == 'POST':
         property_id = request.POST['property_id']
         property = request.POST['property']

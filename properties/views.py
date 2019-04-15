@@ -1,18 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponse
 from django.contrib import messages
 from .models import Property
 from .choices import state_choices, price_choices, bedroom_choices
-# Create your views here.
 
 
 def index(request):
+    """
+    renders the page with all the property listings in the database passed into a paginator.
+    only the published properties are listed here and sorted by list date descending.
+    :param request:
+    :return: HttpResponse renders the properties page
+    """
     listings = Property.objects.order_by('-list_date').filter(is_published=True)
     paginator = Paginator(listings, 6)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
-
 
     context = {
         'listings': paged_listings,
@@ -21,6 +24,13 @@ def index(request):
 
 
 def property_single_listing(request, property_id):
+    """
+    renders the single listing page when a user clicks on More info for any listing. if the passes in id of the
+    listing doesn't exist, a 404 error is thrown.
+    :param request:
+    :param property_id: unique id passed to identify any single listing
+    :return: HttpResponse renders single property page
+    """
     listing = get_object_or_404(Property, pk=property_id)
     context = {
         'listing': listing
@@ -29,14 +39,20 @@ def property_single_listing(request, property_id):
 
 
 def search(request):
+    """
+    searches the database for any available property with matching criteria. can be called from the homepage or
+    the search page.
+    :param request:
+    :return: HttpResponse renders the search page
+    """
     queryset_list = Property.objects.order_by('-list_date')
-    #keywords
+    # keywords
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
             queryset_list = queryset_list.filter(description__icontains=keywords)
 
-    #city
+    # city
     if 'city' in request.GET:
         city = request.GET['city']
         if city:
@@ -73,6 +89,12 @@ def search(request):
 
 
 def add_property(request):
+    """
+    adds a new property with the form values under the authenticated seller. only an authenticated seller can add
+    a new property
+    :param request:
+    :return: HttpResponse renders the add new property form
+    """
     context = {
         'state_choices': state_choices,
     }
@@ -113,6 +135,13 @@ def add_property(request):
 
 
 def delete_property(request, property_id):
+    """
+    deletes the property from the database with the passed in property_id. Only the authenticated seller who
+    created the property can delete the property
+    :param request:
+    :param property_id: unique id to identify properties
+    :return: HttpResponse renders back to dashboard with error or success message
+    """
     property_listing = get_object_or_404(Property, id=property_id)
     seller = property_listing.seller.username
 
@@ -126,6 +155,12 @@ def delete_property(request, property_id):
 
 
 def delete_property_confirmation(request, property_id):
+    """
+    takes the user to a confirmation screen if the property is to be deleted or not.
+    :param request:
+    :param property_id:
+    :return: HttpResponse renders the deletion page
+    """
     property_listing = get_object_or_404(Property, id=property_id)
     context = {
         'listing': property_listing
@@ -134,6 +169,14 @@ def delete_property_confirmation(request, property_id):
 
 
 def update_property(request, property_id):
+    """
+    updates the existing property with new form values. only the authenticated seller who created the property can
+    update it.
+    :param request:
+    :param property_id:
+    :return: HttpResponse renders the dashboard or index page if success or error for POST request.
+    If the request is GET, user is taken to updation form
+    """
     property_listing = get_object_or_404(Property, id=property_id)
     seller = property_listing.seller.username
 
@@ -170,11 +213,7 @@ def update_property(request, property_id):
             property_listing.photo_5 = request.FILES.get('photo_5', property_listing.photo_5)
             property_listing.photo_6 = request.FILES.get('photo_6', property_listing.photo_6)
             property_listing.save()
-            # updated_listing = Property(id=property_listing.id, seller_id=seller_id, photo_main = photo_main,
-            #                            photo_1=photo_1, photo_2 = photo_2, photo_3 = photo_3, photo_4 = photo_4.url,
-            #                            photo_5=photo_5, photo_6 = photo_6)
-            # updated_listing.save()
-            # property_listing.save()x
+
             messages.success(request, 'Your property has been updated successfully')
             return redirect('dashboard')
 
@@ -186,6 +225,12 @@ def update_property(request, property_id):
 
 
 def publish(request, property_id):
+    """
+    changes the is_published flag to True if it is False.
+    :param request:
+    :param property_id:
+    :return:
+    """
     property_listing = get_object_or_404(Property, id=property_id)
     property_listing.is_published = True
     property_listing.save()
@@ -193,6 +238,12 @@ def publish(request, property_id):
 
 
 def unpublish(request, property_id):
+    """
+    changes the is_published flag to False if it is True.
+    :param request:
+    :param property_id:
+    :return:
+    """
     property_listing = get_object_or_404(Property, id=property_id)
     property_listing.is_published = False
     property_listing.save()

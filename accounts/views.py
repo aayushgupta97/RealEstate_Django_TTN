@@ -1,16 +1,22 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages, auth
 from django.core.paginator import Paginator
-from django.contrib.auth.models import User
 from .models import Users
 from contacts.models import Contact
 from properties.models import Property
 
-# Create your views here.
 
 def register(request):
+    """
+    Takes the values from the form if it is a POST request and
+    creates a new user with form values if passwords match and
+    username and email are unique.
+    :param request:
+    :return: HTTPResponse returns to index page if successful otherwise
+    redirects to register form with error.
+    """
     if request.method == "POST":
-        # get form values
+        # Get form values to register user
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         username = request.POST['username']
@@ -21,7 +27,6 @@ def register(request):
         description = request.POST['description']
         phone = request.POST['phone']
         is_seller = request.POST['is_seller']
-
 
         # Check if passwords match
         if password == password2:
@@ -34,14 +39,11 @@ def register(request):
                     messages.error(request, 'That email is being used')
                     return redirect('register')
                 else:
-                    # looks good
+                    # if passwords match, and username and email are unique, create user
                     user = Users.objects.create_user(username=username, password=password, email=email,
                                                      first_name=first_name, last_name=last_name, photo=photo,
                                                      phone=phone, description=description, is_seller=is_seller)
-                    # Login after register
-                    # auth.login(request, user)
-                    # messages.success(request, 'you are now logged in ')
-                    # return redirect('index')
+
                     user.save()
                     messages.success(request, 'You are now registered and can log in')
                     return redirect('index')
@@ -49,14 +51,19 @@ def register(request):
         else:
             messages.error(request, 'Passwords do not match')
             return redirect('register')
-
-
-
     else:
         return render(request, 'accounts/register.html')
 
 
 def login(request):
+    """
+    Gets the username and password from the form if it's a POST request
+    and if the user is authenticated, user is logged in to dashboard,
+    otherwise redirects back to login page.
+    :param request:
+    :return: HttpResponse renders the dashboard if authenticated otherwise
+    returns login page.
+    """
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -75,6 +82,11 @@ def login(request):
 
 
 def logout(request):
+    """
+    Logs out the authenticated user
+    :param request:
+    :return: HttpResponse renders index page
+    """
     if request.method == 'POST':
         auth.logout(request)
         messages.success(request, 'you are now logged out')
@@ -82,19 +94,14 @@ def logout(request):
 
 
 def dashboard(request):
-
-    # else:
-    # sellers = Users.objects.filter(is_seller=True)
-    # session_user = request.user
-    # context = {
-    #     'User': session_user,
-    #     'sellers': sellers
-    # }
-    # if not request.user.photo:
-    #     request.user.photo = '/default.jpg'
-    # if request.user.is_seller:
-
-
+    """
+    If the user is a seller, redirects them to dashboard with enquiries
+    and properties posted by the seller.
+    If the user is a buyer, redirects them to the buyer dashboard.
+    :param request:
+    :return: HttpResponse renders dashboard where the user can edit profile
+    or post new properties.
+    """
     if request.user in Users.objects.filter(is_seller=True):
         seller_contacts = Contact.objects.order_by('-contact_date').filter(seller_id=request.user.id)
         listings = Property.objects.order_by('-list_date').filter(seller=request.user.id)
@@ -120,25 +127,19 @@ def dashboard(request):
         }
     return render(request, 'accounts/dashboard.html', context)
 
+
 def update_user(request, user_id):
+    """
+    Updates the user details with new details in the form if the user
+    is authenticated.
+    :param request:
+    :param user_id: takes in the authenticated user id.
+    :return: HttpResponse renders index if user is not authenticated,
+    update_user_details if user is authenticated, and back to dashboard
+    if user updates details.
+    """
     if request.user.is_authenticated:
         if request.method == 'POST':
-            # user_account = get_object_or_404(Users, id = user_id)
-            # first_name = request.POST['first_name']
-            # last_name = request.POST['last_name']
-            # username = request.POST['username']
-            # email = request.POST['email']
-            # # password = request.POST['password']
-            # # password2 = request.POST['password2']
-            # photo = request.FILES.get('photo', '/default.jpg')
-            # description = request.POST['description']
-            # phone = request.POST['phone']
-            # # is_seller = request.POST['is_seller']
-
-
-            # user_account = Users(first_name=first_name, last_name=last_name, username=username, email=email,
-            #                      photo=photo, description=description, phone=phone, is_seller=is_seller)
-            # user_account.save()
 
             Users.objects.filter(id=user_id).update(first_name = request.POST['first_name'],
                                                     last_name = request.POST['last_name'],
@@ -147,7 +148,7 @@ def update_user(request, user_id):
                                                     phone=request.POST['phone']
                                                     )
             current_user = get_object_or_404(Users, id=request.user.id)
-            current_user.photo = photo=request.FILES.get('photo', current_user.photo)
+            current_user.photo = request.FILES.get('photo', current_user.photo)
             current_user.save()
             messages.success(request, "Successfully updated your profile")
             return redirect('dashboard')

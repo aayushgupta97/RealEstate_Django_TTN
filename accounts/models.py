@@ -16,6 +16,7 @@ class Users(AbstractUser):
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
     phone = models.CharField(max_length=20)
     is_seller = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
