@@ -26,7 +26,7 @@ def register(request):
         photo = request.FILES.get('photo', '/default.jpg')
         description = request.POST['description']
         phone = request.POST['phone']
-        is_seller = request.POST['is_seller']
+        is_seller = request.POST.get('is_seller', False)
 
         # Check if passwords match
         if password == password2:
@@ -145,7 +145,8 @@ def update_user(request, user_id):
                                                     last_name = request.POST['last_name'],
                                                     username=request.POST['username'],
                                                     description=request.POST['description'],
-                                                    phone=request.POST['phone']
+                                                    phone=request.POST['phone'],
+                                                    email=request.POST['email']
                                                     )
             current_user = get_object_or_404(Users, id=request.user.id)
             current_user.photo = request.FILES.get('photo', current_user.photo)

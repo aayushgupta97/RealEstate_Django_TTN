@@ -73,7 +73,7 @@
           {% for listing in listings %}
                 <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
+                <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" style="height: 250px">
                 <div class="card-img-overlay">
                   <h2>
                     <span class="badge badge-secondary text-white">&#x20B9; {{ listing.price | intcomma }}</span>

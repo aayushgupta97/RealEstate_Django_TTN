@@ -9,7 +9,9 @@
         <div class="col-md-12">
                         <img class="col-md-2" src="{{ user.photo.url }}" style="border-radius: 50%;" >
 
-          <h1 class="display-4">{{ user.username|username_capitalize }}'s Dashboard</h1>
+          <h1 class="display-4">{{ user.username|username_capitalize }}'s Dashboard {% if user.is_verified %}
+          <i class="fa fa-check-circle" style="font-size:45px;color:greenyellow"></i>
+          {% endif %}</h1>
           <p class="lead">Manage your Real Estate account</p>
         </div>
       </div>
@@ -105,7 +107,7 @@
           {% for listing in listings %}
             <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
+            <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" style="height: 250px">
             <div class="card-img-overlay">
               <h2>
                 <span class="badge badge-secondary text-white">&#x20B9; {{ listing.price | intcomma }}</span>
