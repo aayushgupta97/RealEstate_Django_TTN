@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 {% include 'messages/alerts.html' %}
-                <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+                <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data" name="registration">
                   {% csrf_token %}
                   <div class="form-group">
                   <label for="first_name">First Name</label>
@@ -31,8 +31,9 @@
                   <input type="email" name="email" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label for="password2">Password</label>
-                  <input type="password" name="password" class="form-control" required>
+                  <label for="password2">Password (UpperCase, LowerCase and a Number)</label>
+                  <input type="password" name="password" class="form-control"
+                         pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
                 </div>
                 <div class="form-group">
                   <label for="password">Confirm Password</label>
@@ -40,8 +41,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="phone">Phone</label>
-                  <input type="text" name="phone" class="form-control" required>
+                  <label for="phone">Phone (10 digits. eg- 9876543210)</label>
+                  <input type="text" name="phone" pattern="^\d{10}$" class="form-control" required>
                 </div>
 
                 <div class="form-group">

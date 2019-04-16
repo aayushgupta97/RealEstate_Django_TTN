@@ -145,22 +145,32 @@ def update_user(request, user_id):
     if request.user.is_authenticated and request.user.id == user_id:
         if request.method == 'POST':
 
-            Users.objects.filter(id=user_id).update(first_name = request.POST['first_name'],
-                                                    last_name = request.POST['last_name'],
-                                                    username=request.POST['username'],
-                                                    description=request.POST['description'],
-                                                    phone=request.POST['phone'],
-                                                    email=request.POST['email']
-                                                    )
-            current_user = get_object_or_404(Users, id=request.user.id)
-            current_user.photo = request.FILES.get('photo', current_user.photo)
-            current_user.save()
-            messages.success(request, "Successfully updated your profile")
-            return redirect('dashboard')
+            if Users.objects.filter(username=request.POST['username']).exists() and \
+                    not(request.user.username == request.POST['username']):
+                messages.error(request, 'That username is taken')
+                return redirect('dashboard')
+            else:
+                if Users.objects.filter(email=request.POST['email']).exists() and \
+                        not(request.user.email == request.POST['email']):
+                    messages.error(request, 'That email is being used')
+                    return redirect('dashboard')
+                else:
+                    Users.objects.filter(id=user_id).update(first_name = request.POST['first_name'],
+                                                            last_name = request.POST['last_name'],
+                                                            username=request.POST['username'],
+                                                            description=request.POST['description'],
+                                                            phone=request.POST['phone'],
+                                                            email=request.POST['email']
+                                                            )
+                    current_user = get_object_or_404(Users, id=request.user.id)
+                    current_user.photo = request.FILES.get('photo', current_user.photo)
+                    current_user.save()
+                    messages.success(request, "Successfully updated your profile")
+                    return redirect('dashboard')
         else:
             return render(request, 'accounts/update_user_details.html')
 
     else:
-        messages.error(request, "you are not authenticated to visit ths page.")
+        messages.error(request, "you are not authenticated to visit this page.")
         return redirect('index')
 
