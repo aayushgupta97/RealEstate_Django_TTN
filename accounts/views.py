@@ -26,7 +26,7 @@ def register(request):
         photo = request.FILES.get('photo', '/default.jpg')
         description = request.POST['description']
         phone = request.POST['phone']
-        is_seller = request.POST.get('is_seller', False)
+        is_seller = request.POST.get('is_seller')
 
         # Check if passwords match
         if password == password2:
@@ -61,7 +61,7 @@ def login(request):
     and if the user is authenticated, user is logged in to dashboard,
     otherwise redirects back to login page.
     :param request:
-    :return: HttpResponse renders the dashboard if authenticated otherwise
+    :return: HttpResponse renders the dashboard if authdashboard/enticated otherwise
     returns login page.
     """
     if request.method == "POST":
@@ -102,30 +102,34 @@ def dashboard(request):
     :return: HttpResponse renders dashboard where the user can edit profile
     or post new properties.
     """
-    if request.user in Users.objects.filter(is_seller=True):
-        seller_contacts = Contact.objects.order_by('-contact_date').filter(seller_id=request.user.id)
-        listings = Property.objects.order_by('-list_date').filter(seller=request.user.id)
-        paginator = Paginator(listings, 3)
-        page = request.GET.get('page')
-        paged_listings = paginator.get_page(page)
+    if request.user.is_authenticated:
+        if request.user in Users.objects.filter(is_seller=True):
+            seller_contacts = Contact.objects.order_by('-contact_date').filter(seller_id=request.user.id)
+            listings = Property.objects.order_by('-list_date').filter(seller=request.user.id)
+            paginator = Paginator(listings, 3)
+            page = request.GET.get('page')
+            paged_listings = paginator.get_page(page)
 
-        paginator = Paginator(seller_contacts, 10)
-        contact_page = request.GET.get('enquiry_page')
-        paged_contacts = paginator.get_page(contact_page)
+            paginator = Paginator(seller_contacts, 10)
+            contact_page = request.GET.get('enquiry_page')
+            paged_contacts = paginator.get_page(contact_page)
 
-        context = {
-            'contacts': paged_contacts,
-            'listings': paged_listings
-        }
+            context = {
+                'contacts': paged_contacts,
+                'listings': paged_listings
+            }
+        else:
+
+            user_contacts = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
+
+            context = {
+                'contacts': user_contacts,
+
+            }
+        return render(request, 'accounts/dashboard.html', context)
     else:
-
-        user_contacts = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
-
-        context = {
-            'contacts': user_contacts,
-
-        }
-    return render(request, 'accounts/dashboard.html', context)
+        messages.error(request, "you are not authenticated to visit ths page.")
+        return redirect('index')
 
 
 def update_user(request, user_id):
@@ -138,7 +142,7 @@ def update_user(request, user_id):
     update_user_details if user is authenticated, and back to dashboard
     if user updates details.
     """
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and request.user.id == user_id:
         if request.method == 'POST':
 
             Users.objects.filter(id=user_id).update(first_name = request.POST['first_name'],

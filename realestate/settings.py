@@ -25,7 +25,7 @@ SECRET_KEY = 'kkie9d_fz728$bf5n#^5(y+i*vxrn!+=tw1*53eo_w4__uu&47'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'properties.apps.PropertiesConfig',
-    # 'sellers.apps.SellersConfig',
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
     'contacts.apps.ContactsConfig',

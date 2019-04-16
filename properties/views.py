@@ -98,40 +98,43 @@ def add_property(request):
     context = {
         'state_choices': state_choices,
     }
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            seller = request.POST['seller_id']
+            title = request.POST['title']
+            address = request.POST['address']
+            city = request.POST['city']
+            state = request.POST['state']
+            zip_code = request.POST['zip_code']
+            description = request.POST['description']
+            price = request.POST['price']
+            bedrooms = request.POST['bedrooms']
+            bathrooms = request.POST['bathrooms']
+            garage = request.POST['garage']
+            square_ft = request.POST['square_ft']
+            lot_size = request.POST['lot_size']
+            photo_main = request.FILES['photo_main']
+            photo_1 = request.FILES.get('photo_1', '')
+            photo_2 = request.FILES.get('photo_2', '')
+            photo_3 = request.FILES.get('photo_3', '')
+            photo_4 = request.FILES.get('photo_4', '')
+            photo_5 = request.FILES.get('photo_5', '')
+            photo_6 = request.FILES.get('photo_6', '')
+            new_property = Property(seller_id=seller, title=title, address=address, city=city, state=state,
+                                    zip_code=zip_code, description=description, price=price,
+                                    bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
+                                    square_ft=square_ft, lot_size=lot_size, photo_main=photo_main,
+                                    photo_1=photo_1, photo_2=photo_2, photo_3=photo_3, photo_4=photo_4,
+                                    photo_5=photo_5, photo_6=photo_6)
+            new_property.save()
+            messages.success(request, 'Your new property has been posted successfully')
+            return redirect('index')
 
-    if request.method == "POST":
-        seller = request.POST['seller_id']
-        title = request.POST['title']
-        address = request.POST['address']
-        city = request.POST['city']
-        state = request.POST['state']
-        zip_code = request.POST['zip_code']
-        description = request.POST['description']
-        price = request.POST['price']
-        bedrooms = request.POST['bedrooms']
-        bathrooms = request.POST['bathrooms']
-        garage = request.POST['garage']
-        square_ft = request.POST['square_ft']
-        lot_size = request.POST['lot_size']
-        photo_main = request.FILES['photo_main']
-        photo_1 = request.FILES.get('photo_1', '')
-        photo_2 = request.FILES.get('photo_2', '')
-        photo_3 = request.FILES.get('photo_3', '')
-        photo_4 = request.FILES.get('photo_4', '')
-        photo_5 = request.FILES.get('photo_5', '')
-        photo_6 = request.FILES.get('photo_6', '')
-        new_property = Property(seller_id=seller, title=title, address=address, city=city, state=state,
-                                zip_code=zip_code, description=description, price=price,
-                                bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
-                                square_ft=square_ft, lot_size=lot_size, photo_main=photo_main,
-                                photo_1=photo_1, photo_2=photo_2, photo_3=photo_3, photo_4=photo_4,
-                                photo_5=photo_5, photo_6=photo_6)
-        new_property.save()
-        messages.success(request, 'Your new property has been posted successfully')
-        return redirect('index')
-
+        else:
+            return render(request, 'properties/add_property.html', context)
     else:
-        return render(request, 'properties/add_property.html', context)
+        messages.error(request, "you are not authenticated to visit this page.")
+        return redirect('index')
 
 
 def delete_property(request, property_id):
@@ -161,11 +164,20 @@ def delete_property_confirmation(request, property_id):
     :param property_id:
     :return: HttpResponse renders the deletion page
     """
-    property_listing = get_object_or_404(Property, id=property_id)
-    context = {
-        'listing': property_listing
-    }
-    return render(request, 'properties/delete_property.html', context)
+    if request.user.is_authenticated:
+        property_listing = get_object_or_404(Property, id=property_id)
+        seller = property_listing.seller.username
+        if request.user.username == seller:
+            context = {
+                'listing': property_listing
+            }
+            return render(request, 'properties/delete_property.html', context)
+        else:
+            messages.error(request, "you are not authorized to delete this.")
+            return redirect('index')
+    else:
+        messages.error(request, "you are not authenticated to visit this page.")
+        return redirect('index')
 
 
 def update_property(request, property_id):
@@ -185,26 +197,25 @@ def update_property(request, property_id):
         'state_choices': state_choices
 
     }
-    if request.method == 'POST':
-        if request.user.is_authenticated and request.user.username == seller:
+    if request.user.is_authenticated and request.user.username == seller:
+        if request.method == 'POST':
             seller_id = property_listing.seller.id
-            title = request.POST['title']
-            address = request.POST['address']
-            city = request.POST['city']
-            state = request.POST['state']
-            zip_code = request.POST['zip_code']
-            description = request.POST['description']
-            price = request.POST['price']
-            bedrooms = request.POST['bedrooms']
-            bathrooms = request.POST['bathrooms']
-            garage = request.POST['garage']
-            square_ft = request.POST['square_ft']
-            lot_size = request.POST['lot_size']
-            Property.objects.filter(id=property_id).update(title=title, address=address, city=city, state=state,
-                                                           zip_code=zip_code, description=description, price=price,
-                                                           bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
-                                                           square_ft=square_ft, lot_size=lot_size)
-
+            property_listing.title = request.POST['title']
+            property_listing.address = request.POST['address']
+            property_listing.city = request.POST['city']
+            property_listing.state = request.POST['state']
+            property_listing.zip_code = request.POST['zip_code']
+            property_listing.description = request.POST['description']
+            property_listing.price = request.POST['price']
+            property_listing.bedrooms = request.POST['bedrooms']
+            property_listing.bathrooms = request.POST['bathrooms']
+            property_listing.garage = request.POST['garage']
+            property_listing.square_ft = request.POST['square_ft']
+            property_listing.lot_size = request.POST['lot_size']
+            # Property.objects.filter(id=property_id).update(title=title, address=address, city=city, state=state,
+            #                                                zip_code=zip_code, description=description, price=price,
+            #                                                bedrooms=bedrooms, bathrooms=bathrooms, garage=garage,
+            #                                                square_ft=square_ft, lot_size=lot_size)
             property_listing.photo_main = request.FILES.get('photo_main', property_listing.photo_main)
             property_listing.photo_1 = request.FILES.get('photo_1', property_listing.photo_1)
             property_listing.photo_2 = request.FILES.get('photo_2', property_listing.photo_2)
@@ -216,12 +227,11 @@ def update_property(request, property_id):
 
             messages.success(request, 'Your property has been updated successfully')
             return redirect('dashboard')
-
         else:
-            messages.error(request, "You are not authenticated to update this property")
-            return redirect('index')
+            return render(request, 'properties/update_property.html', context)
     else:
-        return render(request, 'properties/update_property.html', context)
+        messages.error(request, "You are not authorized to update this property")
+        return redirect('index')
 
 
 def publish(request, property_id):
@@ -231,10 +241,11 @@ def publish(request, property_id):
     :param property_id:
     :return:
     """
-    property_listing = get_object_or_404(Property, id=property_id)
-    property_listing.is_published = True
-    property_listing.save()
-    return redirect('dashboard')
+    if request.user.is_authenticated:
+        property_listing = get_object_or_404(Property, id=property_id)
+        property_listing.is_published = True
+        property_listing.save()
+        return redirect('dashboard')
 
 
 def unpublish(request, property_id):
@@ -244,8 +255,9 @@ def unpublish(request, property_id):
     :param property_id:
     :return:
     """
-    property_listing = get_object_or_404(Property, id=property_id)
-    property_listing.is_published = False
-    property_listing.save()
-    return redirect('dashboard')
+    if request.user.is_authenticated:
+        property_listing = get_object_or_404(Property, id=property_id)
+        property_listing.is_published = False
+        property_listing.save()
+        return redirect('dashboard')
 
