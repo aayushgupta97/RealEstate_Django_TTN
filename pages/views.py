@@ -2,6 +2,7 @@ from django.shortcuts import render
 from properties.choices import bedroom_choices, state_choices, price_choices
 from properties.models import Property
 from accounts.models import Users
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -28,8 +29,11 @@ def about(request):
     :return: HttpResponse renders the about page of the app.
     """
     sellers = Users.objects.order_by('-id').filter(is_verified=True)
+    paginator = Paginator(sellers, 6)
+    page = request.GET.get('page')
+    paged_sellers = paginator.get_page(page)
     context = {
-        'sellers': sellers,
+        'listings': paged_sellers,
     }
     return render(request, 'pages/about.html', context)
 

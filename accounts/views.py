@@ -121,9 +121,12 @@ def dashboard(request):
         else:
 
             user_contacts = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
+            paginator = Paginator(user_contacts, 7)
+            contact_page = request.GET.get('enquiry_page')
+            paged_contacts = paginator.get_page(contact_page)
 
             context = {
-                'contacts': user_contacts,
+                'contacts': paged_contacts,
 
             }
         return render(request, 'accounts/dashboard.html', context)
@@ -155,8 +158,8 @@ def update_user(request, user_id):
                     messages.error(request, 'That email is being used')
                     return redirect('dashboard')
                 else:
-                    Users.objects.filter(id=user_id).update(first_name = request.POST['first_name'],
-                                                            last_name = request.POST['last_name'],
+                    Users.objects.filter(id=user_id).update(first_name=request.POST['first_name'],
+                                                            last_name=request.POST['last_name'],
                                                             username=request.POST['username'],
                                                             description=request.POST['description'],
                                                             phone=request.POST['phone'],
@@ -167,10 +170,12 @@ def update_user(request, user_id):
                     current_user.save()
                     messages.success(request, "Successfully updated your profile")
                     return redirect('dashboard')
+        # If the request is GET
         else:
             return render(request, 'accounts/update_user_details.html')
 
     else:
         messages.error(request, "you are not authenticated to visit this page.")
         return redirect('index')
+
 

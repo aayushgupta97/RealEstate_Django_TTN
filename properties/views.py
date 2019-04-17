@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
+from accounts.models import Users
 from .models import Property
 from .choices import state_choices, price_choices, bedroom_choices
 
@@ -98,7 +99,8 @@ def add_property(request):
     context = {
         'state_choices': state_choices,
     }
-    if request.user.is_authenticated:
+    sellers = Users.objects.all().filter(is_seller = True)
+    if request.user.is_authenticated and request.user in sellers:
         if request.method == "POST":
             seller = request.POST['seller_id']
             title = request.POST['title']
