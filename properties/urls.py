@@ -10,7 +10,6 @@ urlpatterns = [
     path('delete/<int:property_id>', views.delete_property_confirmation, name="delete_property_confirmation"),
     path('update/<int:property_id>', views.update_property, name="update_property"),
     path('publish/<int:property_id>', views.publish, name="publish"),
-    path('unpublish/<int:property_id>', views.unpublish, name="unpublish")
-
+    path('unpublish/<int:property_id>', views.unpublish, name="unpublish"),
 ]
 

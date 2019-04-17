@@ -263,3 +263,4 @@ def unpublish(request, property_id):
         property_listing.save()
         return redirect('dashboard')
 
+

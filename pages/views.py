@@ -3,6 +3,9 @@ from properties.choices import bedroom_choices, state_choices, price_choices
 from properties.models import Property
 from accounts.models import Users
 from django.core.paginator import Paginator
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
 # Create your views here.
 
 
@@ -37,4 +40,14 @@ def about(request):
     }
     return render(request, 'pages/about.html', context)
 
+def handler404(request, exception, template_name="error_404.html"):
+    response = render_to_response('pages/error_404.html')
+    response.status_code = 404
+    return response
+
+
+def handler500(request, exception, template_name="error_500.html"):
+    response = render_to_response('pages/about.html')
+    response.status_code = 500
+    return response
 
