@@ -40,10 +40,10 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-
+                    <br>
                     <div class="form-group">
-                    <label for="zip_code">Zip Code</label>
-                    <input type="text" name="zip_code" class="form-control" value="{{ listing.zip_code }}" required>
+                    <label for="zip_code">Zip Code (eg - 110022)</label>
+                    <input type="text" name="zip_code" class="form-control" pattern="[0-9]{6}" maxlength="6" value="{{ listing.zip_code }}" required>
                     </div>
 
                     <div class="form-group">
@@ -82,13 +82,13 @@
 
                     <div class="form-group">
                   <label for="photo_main">Upload Main photo</label>
-                    <input type="file" name="photo_main" class="form-control">
+                    <input type="file" name="photo_main" class="form-control" accept="image/*">
                         <img src="{{ listing.photo_main.url }}" class="col-md-12">
                         <hr>
                     </div>
                     <div class="form-group">
                   <label for="photo_1">Upload photo 1</label>
-                    <input type="file" name="photo_1" class="form-control">
+                    <input type="file" name="photo_1" class="form-control" accept="image/*">
                         {% if listing.photo_1 %}
                         <img src="{{ listing.photo_1.url }}" class="col-md-12">
                         {% endif %}
@@ -96,7 +96,7 @@
                     </div>
                     <div class="form-group">
                   <label for="photo_2">Upload photo 2</label>
-                    <input type="file" name="photo_2" class="form-control">
+                    <input type="file" name="photo_2" class="form-control" accept="image/*">
                         {% if listing.photo_2 %}
                         <img src="{{ listing.photo_2.url }}" class="col-md-12">
                         {% endif %}
@@ -104,7 +104,7 @@
                     </div>
                     <div class="form-group">
                   <label for="photo_3">Upload photo 3</label>
-                    <input type="file" name="photo_3" class="form-control">
+                    <input type="file" name="photo_3" class="form-control" accept="image/*">
                         {% if listing.photo_3 %}
                         <img src="{{ listing.photo_3.url }}" class="col-md-12">
                         {% endif %}
@@ -112,7 +112,7 @@
                     </div>
                     <div class="form-group">
                   <label for="photo_4">Upload photo 4</label>
-                    <input type="file" name="photo_4" class="form-control">
+                    <input type="file" name="photo_4" class="form-control" accept="image/*">
                         {% if listing.photo_4 %}
                         <img src="{{ listing.photo_4.url }}" class="col-md-12">
                         {% endif %}
@@ -120,7 +120,7 @@
                     </div>
                     <div class="form-group">
                   <label for="photo_5">Upload photo 5</label>
-                    <input type="file" name="photo_5" class="form-control">
+                    <input type="file" name="photo_5" class="form-control" accept="image/*">
                      {% if listing.photo_5 %}
                         <img src="{{ listing.photo_5.url }}" class="col-md-12">
                         {% endif %}
@@ -129,7 +129,7 @@
                     </div>
                     <div class="form-group">
                   <label for="photo_6">Upload photo 6</label>
-                    <input type="file" name="photo_6" class="form-control">
+                    <input type="file" name="photo_6" class="form-control" accept="image/*">
                         {% if listing.photo_6 %}
                         <img src="{{ listing.photo_6.url }}" class="col-md-12">
                         {% endif %}

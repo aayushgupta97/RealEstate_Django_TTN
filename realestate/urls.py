@@ -14,4 +14,4 @@ urlpatterns = [
 
 
 handler404 = page_views.handler404
-handler500 = page_views.handler500
+# handler500 = page_views.handler500

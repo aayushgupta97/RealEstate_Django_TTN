@@ -36,10 +36,10 @@
                             <option value="{{ key }}">{{ value }}</option>
                         {% endfor %}
                     </select>
-
+                    <br>
                     <div class="form-group">
-                    <label for="zip_code">Zip Code</label>
-                    <input type="text" name="zip_code" class="form-control" required>
+                    <label for="zip_code">Zip Code (eg - 110022)</label>
+                    <input type="text" name="zip_code" class="form-control" pattern="[0-9]{6}" maxlength="6" required>
                     </div>
 
                     <div class="form-group">
@@ -78,31 +78,31 @@
 
                     <div class="form-group">
                   <label for="photo_main">Upload Main photo</label>
-                    <input type="file" name="photo_main" class="form-control" required>
+                    <input type="file" name="photo_main" class="form-control" accept="image/*" required>
                     </div>
                     <div class="form-group">
                   <label for="photo_1">Upload photo 1</label>
-                    <input type="file" name="photo_1" class="form-control">
+                    <input type="file" name="photo_1" class="form-control" accept="image/*">
                     </div>
                     <div class="form-group">
                   <label for="photo_2">Upload photo 2</label>
-                    <input type="file" name="photo_2" class="form-control">
+                    <input type="file" name="photo_2" class="form-control" accept="image/*">
                     </div>
                     <div class="form-group">
                   <label for="photo_3">Upload photo 3</label>
-                    <input type="file" name="photo_3" class="form-control">
+                    <input type="file" name="photo_3" class="form-control" accept="image/*">
                     </div>
                     <div class="form-group">
                   <label for="photo_4">Upload photo 4</label>
-                    <input type="file" name="photo_4" class="form-control">
+                    <input type="file" name="photo_4" class="form-control" accept="image/*">
                     </div>
                     <div class="form-group">
                   <label for="photo_5">Upload photo 5</label>
-                    <input type="file" name="photo_5" class="form-control">
+                    <input type="file" name="photo_5" class="form-control" accept="image/*">
                     </div>
                     <div class="form-group">
                   <label for="photo_6">Upload photo 6</label>
-                    <input type="file" name="photo_6" class="form-control">
+                    <input type="file" name="photo_6" class="form-control" accept="image/*">
                     </div>
 
                     <input type="submit" value="Add Property" class="btn btn-secondary btn-block">
